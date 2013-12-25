@@ -83,92 +83,123 @@ ring0b = [13, 11, 13, 10, 18, 10, 10, 10, 10, 15, 7, 19, 18, 2, 9, 27]
 ring1a = [6, 0, 10, 0, 8, 0, 10, 0, 9, 0, 8, 0, 8, 0, 9, 0]
 
 
-rings = [ring0a, ring0b, ring1a]
+ring1b = [5, 1, 24, 8, 10, 20, 7, 20, 12, 1, 10, 12, 22, 0, 5, 8]
 
+ring2a = [0, 0, 11, 0, 8, 0, 8, 0, 8, 0, 10, 0, 11, 0, 10, 0]
 
-
-
-# for ring in rings:
-	# print ring
-	
 
 positions = range(0,16)
-
-# print positions
-
-reel0 = ring0a
+positions2 = range(0,16)
 
 
+for ring1position in positions:
 
-# we are now going to do a mapping
-# ring0a:	 0, 	16,	...,	7
-# ring0b:	13, 	11,	...,	27
-# ring1a:	 6, 	0,	...,	0
-
-# we need to condense ring0b and ring1a into one array called reel1
-
-reel1 = mergeRingsToReel(0, positions, ring0b, ring1a)
-
-# print reel1
-
-sum1 = addReels(positions, reel0, reel1)
-
-# print sum1
-
-
-# rotate function
-
-# print ring1a
-# ringRotated = rotateRing(0, ring1a)
-# print ringRotated
-# print ""
-# print ring1a
-# ringRotated = rotateRing(1, ring1a)
-# print ringRotated
-# print ""
-# print ring1a
-# ringRotated = rotateRing(2, ring1a)
-# print ringRotated
-# print ""
-# print ring1a
-# ringRotated = rotateRing(3, ring1a)
-# print ringRotated
-# print ""
-# print ring1a
-# ringRotated = rotateRing(4, ring1a)
-# print ringRotated
-
-# print ringRotated
-
-
-
-
-for position in positions:
-
-	reel0 = ring0a
-	ring1 = rotateRing(position, ring1a)
+	register0 = ring0a
+	register1 = rotateRing(ring1position, ring1a)
 	
-	print "ROTATE RING1 " + str(position) + " times"
-	print "ring1: " + str(ring1)
+	print "ROTATE RING1 " + str(ring1position) + " times"
+	print "register1: " + str(register1)
 	
-	if checkIfEvenOrOdd(position) == "even":
+	if checkIfEvenOrOdd(ring1position) == "even":
 		offset = 0
 	else:
 		offset = 1
 	
-	reel1 = mergeRingsToReel(offset, positions, ring0b, ring1)
+	reel1 = mergeRingsToReel(offset, positions, ring0b, register1)
 	
-	# print reel1
+	print "reel1: " + str(reel1)
 	
-	sum1 = addReels(positions, reel0, reel1)
+	sum1 = addReels(positions, register0, reel1)
 	
 	print "SUM IS: " + str(sum1)
 	print ""
+	
+	for ring2position in positions:
+		register2 = rotateRing(ring2position, ring2a)
+		
+		print "ROTATE RING2 " + str(ring2position) + " times"
+		print "register2: " + str(register2)
+		print "ring1b: " + str(ring1b)
+		
+		if checkIfEvenOrOdd(ring2position) == "even":
+			print "EVEN"
+			offset = 0
+		else:
+			print "ODD"
+			offset = 1
+
+		reel2 = mergeRingsToReel(offset, positions2, ring1b, register2)
+
+		print "reel2: " + str(reel2)
+		
+		sum2 = addReels(positions, sum1, reel2)
+		
+		print "SUM2 IS: " + str(sum2)
+		print ""
+		
 
 
 
 
 
+
+
+# rings = [ring0a, ring0b, ring1a]
+# 
+# 
+# 
+# 
+# # for ring in rings:
+# 	# print ring
+# 	
+# 
+# 
+# # print positions
+# 
+# reel0 = ring0a
+# 
+# 
+# 
+# # we are now going to do a mapping
+# # ring0a:	 0, 	16,	...,	7
+# # ring0b:	13, 	11,	...,	27
+# # ring1a:	 6, 	0,	...,	0
+# 
+# # we need to condense ring0b and ring1a into one array called reel1
+# 
+# reel1 = mergeRingsToReel(0, positions, ring0b, ring1a)
+# 
+# # print reel1
+# 
+# sum1 = addReels(positions, reel0, reel1)
+# 
+# # print sum1
+# 
+# 
+# # rotate function
+# 
+# # print ring1a
+# # ringRotated = rotateRing(0, ring1a)
+# # print ringRotated
+# # print ""
+# # print ring1a
+# # ringRotated = rotateRing(1, ring1a)
+# # print ringRotated
+# # print ""
+# # print ring1a
+# # ringRotated = rotateRing(2, ring1a)
+# # print ringRotated
+# # print ""
+# # print ring1a
+# # ringRotated = rotateRing(3, ring1a)
+# # print ringRotated
+# # print ""
+# # print ring1a
+# # ringRotated = rotateRing(4, ring1a)
+# # print ringRotated
+# 
+# # print ringRotated
+# 
 
 
 
