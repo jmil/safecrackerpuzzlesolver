@@ -53,11 +53,11 @@ def mergeRingsToReel(offset, positions, ring1, ring2):
 	return reel
 
 
-def addReels(positions, reel1, reel2):
+def addReels(numbers, reelA, reelB):
 	sum = []
 	
-	for position in positions:
-		sum.append(reel1[position] + reel2[position])
+	for number in numbers:
+		sum.append(reelA[number] + reelB[number])
 	
 	return sum
 	
@@ -87,9 +87,24 @@ ring1b = [5, 1, 24, 8, 10, 20, 7, 20, 12, 1, 10, 12, 22, 0, 5, 8]
 
 ring2a = [0, 0, 11, 0, 8, 0, 8, 0, 8, 0, 10, 0, 11, 0, 10, 0]
 
+ring2b = [20, 8, 19, 10, 15, 20, 12, 20, 13, 13, 0, 22, 19, 10, 0, 5]
+
+ring3a = [3, 0, 8, 0, 10, 0, 14, 0, 11, 0, 8, 0, 12, 0, 11, 0]
+
+ring3b = [10, 17, 10, 5, 6, 18, 8, 17, 4, 20, 4, 14, 4, 5, 1, 14]
+
+ring4a = [19, 0, 8, 0, 17, 0, 6, 0, 6, 0, 8, 0, 8, 0, 16, 0]
+
+
+
+
+
 
 positions = range(0,16)
 positions2 = range(0,16)
+positions3 = range(0,16)
+positions4 = range(0,16)
+positions5 = range(0,16)
 
 
 for ring1position in positions:
@@ -97,8 +112,8 @@ for ring1position in positions:
 	register0 = ring0a
 	register1 = rotateRing(ring1position, ring1a)
 	
-	print "ROTATE RING1 " + str(ring1position) + " times"
-	print "register1: " + str(register1)
+	# print "ROTATE RING1 " + str(ring1position) + " times"
+	# print "register1: " + str(register1)
 	
 	if checkIfEvenOrOdd(ring1position) == "even":
 		offset = 0
@@ -107,37 +122,87 @@ for ring1position in positions:
 	
 	reel1 = mergeRingsToReel(offset, positions, ring0b, register1)
 	
-	print "reel1: " + str(reel1)
+	# print "reel1: " + str(reel1)
 	
 	sum1 = addReels(positions, register0, reel1)
 	
-	print "SUM IS: " + str(sum1)
-	print ""
+	# print "SUM1 IS: " + str(sum1)
+	# # print ""
 	
 	for ring2position in positions:
 		register2 = rotateRing(ring2position, ring2a)
 		
-		print "ROTATE RING2 " + str(ring2position) + " times"
-		print "register2: " + str(register2)
-		print "ring1b: " + str(ring1b)
+		# print "ROTATE RING2 " + str(ring2position) + " times"
+		# print "register2: " + str(register2)
+		# print "ring1b: " + str(ring1b)
 		
 		if checkIfEvenOrOdd(ring2position) == "even":
-			print "EVEN"
+			# # print "EVEN"
 			offset = 0
 		else:
-			print "ODD"
+			# # print "ODD"
 			offset = 1
 
-		reel2 = mergeRingsToReel(offset, positions2, ring1b, register2)
+		reel2 = mergeRingsToReel(offset, positions2, rotateRing(ring1position, ring1b), register2)
 
-		print "reel2: " + str(reel2)
+		# print "reel2: " + str(reel2)
 		
-		sum2 = addReels(positions, sum1, reel2)
+		sum2 = addReels(positions2, sum1, reel2)
 		
-		print "SUM2 IS: " + str(sum2)
-		print ""
+		# print "SUM2 IS: " + str(sum2)
+		# # print ""
 		
+		for ring3position in positions:
+			register3 = rotateRing(ring3position, ring3a)
 
+			if checkIfEvenOrOdd(ring3position) == "even":
+				# # print "EVEN"
+				offset = 0
+			else:
+				# # print "ODD"
+				offset = 1
+
+			reel3 = mergeRingsToReel(offset, positions3, rotateRing(ring2position, ring2b), register3)
+
+			# print "reel3: " + str(reel3)
+
+			sum3 = addReels(positions3, sum2, reel3)
+
+			# print "SUM3 IS: " + str(sum3)
+			# print ""
+
+			for ring4position in positions:
+				register4 = rotateRing(ring4position, ring4a)
+
+				if checkIfEvenOrOdd(ring4position) == "even":
+					# # print "EVEN"
+					offset = 0
+				else:
+					# # print "ODD"
+					offset = 1
+
+				reel4 = mergeRingsToReel(offset, positions4, rotateRing(ring3position, ring3b), register4)
+
+				# print "reel3: " + str(reel3)
+
+				sum4 = addReels(positions4, sum3, reel4)
+
+				if sum4 == [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50]:
+				# if sum4[0] == 50 and sum4[1] == 50 and sum4[2] == 50:
+					print "ring1Position: " + str(ring1position)
+					print "ring2Position: " + str(ring2position)
+					print "ring3Position: " + str(ring3position)
+					print "ring4Position: " + str(ring4position)
+					print "reel1: " + str(reel1)
+					print "SUM1 IS: " + str(sum1)
+					print "reel2: " + str(reel2)
+					print "SUM2 IS: " + str(sum2)
+					print "reel3: " + str(reel3)
+					print "SUM3 IS: " + str(sum3)
+					print "reel4: " + str(reel4)
+					print "SOLUTION FOUND IS: " + str(sum4)
+					# print ""
+			
 
 
 
