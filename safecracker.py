@@ -4,6 +4,8 @@
 safecracker.py
 
 Jordan and Rich
+
+
 """
 
 ##### NEED TO FIX DIVISION OPERATOR!!!!!
@@ -30,6 +32,52 @@ def done_at(file):
 
 # FROM http://stackoverflow.com/questions/1191374/subprocess-with-timeout
 import subprocess, threading
+
+
+
+# There are 5 rings
+# All rotations are clockwise, and ordering of ring values is also clockwise
+
+ring0a = [0, 16, 8, 4, 15, 7, 10, 1, 10, 4, 5, 3, 15, 16, 4, 7]
+ring0b = [13, 11, 13, 10, 18, 10, 10, 10, 10, 15, 7, 19, 18, 2, 9, 27]
+
+ring1a = [6, 0, 9, 0, 8, 0, 8, 0, 9, 0, 10, 0, 8, 0, 10, 0]
+
+
+rings = [ring0a, ring0b, ring1a]
+
+
+for ring in rings:
+	print ring
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
