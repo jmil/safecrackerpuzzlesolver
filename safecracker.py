@@ -106,6 +106,8 @@ positions3 = range(0,16)
 positions4 = range(0,16)
 positions5 = range(0,16)
 
+counter = 0
+
 
 for ring1position in positions:
 
@@ -186,6 +188,7 @@ for ring1position in positions:
 				# print "reel3: " + str(reel3)
 
 				sum4 = addReels(positions4, sum3, reel4)
+				counter += 1
 
 				if sum4 == [50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50]:
 				# if sum4[0] == 50 and sum4[1] == 50 and sum4[2] == 50:
@@ -205,7 +208,8 @@ for ring1position in positions:
 			
 
 
-
+print ""
+print "OUT OF " + str(counter) + " COMBINATIONS TESTED"
 
 
 
